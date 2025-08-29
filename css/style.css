@@ -1,0 +1,198 @@
+/* ===== Base & utilities ===== */
+html { scroll-behavior: smooth; }
+.truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-link { transition: color 150ms ease; }
+
+/* Reveal animations */
+.reveal, .reveal-left, .reveal-right {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal-left { transform: translateX(-24px); }
+.reveal-right { transform: translateX(24px); }
+.reveal.in-view, .reveal-left.in-view, .reveal-right.in-view { opacity: 1; transform: none; }
+
+/* Legacy placeholders (biarkan untuk kompatibilitas lama) */
+.logo {
+  height: 50px; width: 50px; background-color: gray;
+  background-image: url(https://picsum.photos/200);
+  background-size: cover; background-position: center; border-radius: 50%;
+}
+.main-header { display: flex; justify-content: space-between; align-items: center; }
+
+/* ===== Buttons (tanpa @apply) ===== */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem 1.25rem; border-radius: .75rem;
+  background-color: #059669; /* emerald-600 */
+  color: #fff; font-weight: 500;
+  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  text-decoration: none;
+}
+.btn-primary:hover { background-color: #047857; /* emerald-700 */ }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem 1.25rem; border-radius: .75rem;
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(5,150,105,.3); /* emerald-600/30 */
+  color: #047857; /* emerald-700 */
+  font-weight: 500;
+  transition: background-color .2s ease, box-shadow .2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  text-decoration: none;
+}
+.btn-ghost:hover { background: #fff; }
+
+/* ===== Feature dots ===== */
+.dot-emerald, .dot-sky, .dot-amber, .dot-fuchsia {
+  display: inline-block; height: 1.25rem; width: 1.25rem; border-radius: 9999px;
+  vertical-align: middle;
+}
+.dot-emerald { background: rgba(16,185,129,.20); box-shadow: 0 0 0 1px rgba(5,150,105,.30); }
+.dot-sky     { background: rgba(14,165,233,.20); box-shadow: 0 0 0 1px rgba(2,132,199,.30); }
+.dot-amber   { background: rgba(245,158,11,.20); box-shadow: 0 0 0 1px rgba(217,119,6,.30); }
+.dot-fuchsia { background: rgba(217,70,239,.20); box-shadow: 0 0 0 1px rgba(192,38,211,.30); }
+
+/* ===== Cards umum (Services/Why/Price/FAQ/Testimonial) ===== */
+.card {
+  padding: 1.25rem; border-radius: 1rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.10); }
+.card-title { margin-top: .5rem; font-size: 1.125rem; font-weight: 600; color: #111827; }
+.card-text  { margin-top: .25rem; font-size: .875rem; color: #4b5563; }
+.icon-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 2.5rem; width: 2.5rem; border-radius: .75rem;
+  background: #d1fae5; color: #065f46; font-size: .75rem; font-weight: 700;
+  border: 1px solid rgba(5,150,105,.30);
+}
+
+.section-title   { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem); font-weight: 800; color: #111827; }
+.section-subtitle{ color: #4b5563; }
+
+.list-why { position: relative; padding-left: 1rem; color: #374151; }
+.list-why::before { content: "✔"; position: absolute; left: 0; color: #059669; font-weight: 700; }
+
+/* Steps */
+.step-card {
+  padding: 1.25rem; border-radius: 1rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.step-card > span {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 1.75rem; width: 1.75rem; border-radius: 9999px;
+  background: #059669; color: #fff; font-size: .75rem; font-weight: 700; margin-right: .5rem;
+}
+.step-card h4 { display: inline; font-size: 1rem; font-weight: 600; color: #111827; }
+.step-card p  { margin-top: .5rem; font-size: .875rem; color: #4b5563; }
+
+/* Testimonials */
+.testi {
+  padding: 1.25rem; border-radius: 1rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  color: #374151; font-style: italic;
+}
+.testi footer { margin-top: .5rem; color: #6b7280; font-size: .875rem; font-style: normal; }
+
+/* Pricing */
+.price-card {
+  position: relative; padding: 1.5rem; border-radius: 1rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.price-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.price-card.featured { border: 2px solid #10b981; box-shadow: 0 0 0 1px rgba(16,185,129,.25) inset; }
+.badge {
+  position: absolute; right: 1rem; top: -0.75rem;
+  font-size: 10px; font-weight: 700; background: #059669; color: #fff;
+  padding: .25rem .5rem; border-radius: .375rem;
+}
+.price-title { font-size: 1.125rem; font-weight: 600; color: #111827; }
+.price-value { margin: .5rem 0; font-size: 1.5rem; font-weight: 800; color: #065f46; }
+.price-list  { margin-bottom: 1rem; font-size: .875rem; color: #4b5563; }
+
+/* FAQ */
+.faq {
+  padding: 1rem; border-radius: .75rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.faq > summary { cursor: pointer; font-size: 1rem; font-weight: 600; color: #111827; }
+.faq > p { margin-top: .5rem; font-size: .875rem; color: #4b5563; }
+
+/* ===== Portfolio ===== */
+.folio-card {
+  border-radius: 1rem; overflow: hidden; background: #fff;
+  border: 1px solid rgba(229,231,235,.6);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.folio-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.folio-img { width: 100%; height: 12rem; object-fit: cover; transition: transform .2s ease; }
+.folio-card:hover .folio-img { transform: scale(1.02); }
+.folio-body { padding: 1rem; }
+.folio-title { font-size: 1rem; font-weight: 600; color: #111827; }
+.folio-text  { font-size: .875rem; color: #4b5563; }
+
+/* ===== Panel & Form Components ===== */
+.panel {
+  border-radius: 1rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  padding: 1.25rem;
+}
+.db-label { display: block; font-size: .875rem; font-weight: 500; color: #374151; margin-bottom: .25rem; }
+.db-input {
+  width: 100%; border-radius: .75rem; border: 1px solid #d1d5db;
+  padding: .5rem 1rem; outline: none;
+  transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+  background: #fff; color: #111827;
+}
+.db-input:focus { box-shadow: 0 0 0 3px rgba(16,185,129,.38); border-color: #10b981; }
+.hint { font-size: 11px; color: #9ca3af; margin-top: .25rem; }
+.stat-label { color: #6b7280; }
+
+/* Table-like form for Message Us */
+.form-table {
+  border: 1px solid #e5e7eb; border-radius: .75rem; overflow: hidden; background: #fff;
+}
+.form-row {
+  display: grid; grid-template-columns: 160px 1fr; gap: 12px;
+  padding: 12px 14px; align-items: center; border-top: 1px solid #e5e7eb;
+}
+.form-row:first-child { border-top: 0; }
+.form-row:nth-child(odd) { background: #fafafa; }
+.form-row.no-stripe { background: #fff !important; }
+.form-row.align-start { align-items: start; }
+.form-label { color: #111827; font-weight: 600; }
+.form-label::after { content: " :"; }
+.form-field .hint { font-size: 11px; color: #9ca3af; margin-top: 6px; }
+
+/* Output panel (Message Us) */
+.output-card { background: #fff; }
+.output-grid { display: grid; grid-template-columns: 150px 1fr; gap: 8px 12px; }
+.output-grid dt { color: #6b7280; font-weight: 600; }
+.output-grid dd { color: #111827; word-break: break-word; }
+
+/* Mobile: stack labels */
+@media (max-width: 640px) {
+  .form-row { grid-template-columns: 1fr; }
+  .form-label::after { content: ""; }
+  .form-label { margin-bottom: 4px; }
+}
+
+/* ===== Inline visitor card (opsional, jika dipakai) ===== */
+.inline-card {
+  border-radius: 1rem; background: #fff;
+  border: 1px solid rgba(229,231,235,.6); box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  padding: 1rem;
+}
+
+/* ===== Modal helpers ===== */
+.modal-open { overflow: hidden; }
+
+/* Visitor modal input width (pastikan penuh) */
+#visitor-modal .db-input { width: 100%; }
